@@ -1,0 +1,28 @@
+syntax on
+set noerrorbells
+set tabstop=4 softtabstop=4
+set shiftwidth=4
+set smartindent
+set number relativenumber
+set nowrap
+set smartcase
+set incsearch
+ 
+ 
+colorscheme gruvbox
+set background=light
+autocmd vimEnter *.cpp map <F5> :w <CR> :!clear ; g++ --std=c++17 %; if [ -f a.out ]; then time ./a.out; rm a.out; fi <CR>
+autocmd FileType python map <buffer> <F5> :w<CR>:exec '!python3.9' shellescape(@%, 1)<CR>
+autocmd FileType python imap <buffer> <F5> <esc>:w<CR>:exec '!python3.9' shellescape(@%, 1)<CR>
+autocmd vimEnter *.c map <F5> :w <CR> :!gcc % -o %< -lm&& ./%< <CR>
+let &t_SI = "\e[5 q"
+let &t_EI = "\e[2 q"
+set guifont=Monospace\ 14
+ 
+augroup myCmds
+au!
+autocmd VimEnter * silent !echo -ne "\e[2 q"
+augroup END
+ 
+ 
+ 
